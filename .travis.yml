@@ -11,7 +11,7 @@ install:
 
 
 script:
-  - ansible-playbook tests/docker.yml -i tests/inventory --syntax-check
+  - ansible-playbook tests/docker.yml -i tests/inventory
 
 
 notifications:
