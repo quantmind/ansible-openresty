@@ -9,4 +9,4 @@
     openresty_volume_path: "{{ ansible_env.HOME }}/tests/openresty"
 
   roles:
-    - openresty
+    - .
