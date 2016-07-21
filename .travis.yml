@@ -20,6 +20,8 @@ install:
 script:
   # Basic role syntax check
   - ansible-playbook tests/docker.yml -i tests/inventory --syntax-check
+  # login into Docker Hub
+  - docker login -p $DOCKER_PASS -e $DOCKER_EMAIL -u $DOCKER_USER
   # Run the role/playbook with ansible-playbook
   - ansible-playbook tests/docker.yml -i tests/inventory --connection=local --become
   # Run the role/playbook again, checking to make sure it's idempotent

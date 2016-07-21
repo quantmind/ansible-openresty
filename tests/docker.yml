@@ -4,7 +4,9 @@
 
   vars:
     docker_users: ["ubuntu"]
-    openresty_push: false
+    openresty_mantainer: Luca Sbardella <luca@quantmind.com>
+    openresty_repository: quantmind/openresty
+    openresty_image_name: openresty_test
     openresty_create_image: true
     openresty_image_name: openresty_test
     openresty_volume_path: "{{ ansible_env.HOME }}/tests/openresty"
