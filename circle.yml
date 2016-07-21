@@ -9,6 +9,8 @@ machine:
 dependencies:
   override:
     - pip install -U pip ansible
+    - ansible --version
+    - printf '[defaults]\nroles_path=../' >ansible.cfg
 
 
 test:
