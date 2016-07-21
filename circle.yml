@@ -15,7 +15,7 @@ dependencies:
 
 test:
   override:
-    - ansible-playbook tests/docker.yml
+    - ansible-playbook tests/docker.yml -i tests/inventories
 
 
 notify:
