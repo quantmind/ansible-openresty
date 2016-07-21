@@ -10,7 +10,7 @@ install:
   - ansible-galaxy install dochang.docker
 
 
-scripts:
+script:
   - ansible-playbook tests/docker.yml -i tests/inventory --syntax-check
 
 
