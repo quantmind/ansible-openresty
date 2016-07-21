@@ -1,5 +1,7 @@
 # Ansible Openresty
 
+[![Build Status](https://travis-ci.org/quantmind/ansible-openresty.svg?branch=master)](https://travis-ci.org/quantmind/ansible-openresty)
+
 [![CircleCI](https://circleci.com/gh/quantmind/ansible-openresty.svg?style=svg)](https://circleci.com/gh/quantmind/ansible-openresty)
 
 **Ansible galaxy**: [quantmind.openresty](https://galaxy.ansible.com/quantmind/openresty/)
