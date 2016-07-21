@@ -1,0 +1,9 @@
+- name: strip ssl keys
+  command: >
+    openssl rsa
+    -in "{{ openresty_volume_nginx_ssl_path }}/{{ item.filename | default(item.domain) }}/server.key"
+    -out "{{ openresty_volume_nginx_ssl_path }}/{{ item.filename | default(item.domain) }}/server.key"
+    -passin pass:{{ ssl_passphrase }}
+    creates="{{ openresty_volume_nginx_ssl_path }}/{{ item.filename | default(item.domain) }}/server.key"
+  with_items: "{{ services }}"
+  when: item.certificate is defined and item.domain is defined

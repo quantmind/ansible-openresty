@@ -1,0 +1,16 @@
+###
+#   Install nginx configuration files for services providing the <domain> key
+#
+---
+- name: copy server conf files to {{ openresty_volume_nginx_config_path }}
+  template:
+    src=server.conf.j2
+    dest="{{ openresty_volume_nginx_config_path }}/{{ item.filename | default(item.domain) }}.conf"
+  with_items: "{{ services }}"
+  when: item.domain is defined
+
+- name: copy additional configuration files into {{ openresty_volume_nginx_config_path }}
+  template:
+    src="{{ item }}"
+    dest="{{ openresty_volume_nginx_config_path }}/{{ item }}"
+  with_items: "{{ nginx_config_templates }}"

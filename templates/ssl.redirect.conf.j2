@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    # listen [::]:80;
+    server_name {{ item.domain }};
+    return 301 https://$host$request_uri;
+}
+
+{% if item.redirects | default(False) %}
+{% for redirect in item.redirects %}
+server {
+    listen 443 http2;
+    ssl on;
+    ssl_certificate {{ nginx_ssl_path }}/{{ redirect.filename | default(redirect.from) }}/server.crt;
+    ssl_certificate_key {{ nginx_ssl_path }}/{{ redirect.filename | default(redirect.from) }}/server.key;
+    server_name {{ redirect.from }};
+    return 301 https://{{ redirect.to }}$request_uri;
+}
+{% endfor %}
+{% endif %}

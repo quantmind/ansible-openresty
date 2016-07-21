@@ -1,0 +1,30 @@
+###
+#   Download SSL certificates from S3
+---
+- name: copy certificate to server from s3 bucket {{ certificate_bucket }}
+  s3:
+    bucket="{{ certificate_bucket }}"
+    object="{{ item.certificate }}.crt"
+    dest="{{ certificates_path }}/{{ item.filename | default(item.domain) }}/server.crt"
+    mode=get
+  with_items: "{{ services }}"
+  when: item.certificate is defined and item.domain is defined
+
+- name: copy certificate key to server from s3 bucket {{ certificate_bucket }}
+  s3:
+    bucket="{{ certificate_bucket }}"
+    object="{{ item.certificate }}.key"
+    dest="{{ certificates_path }}/{{ item.filename | default(item.domain) }}/server.key"
+    mode=get
+  with_items: "{{ services }}"
+  when: item.certificate is defined and item.domain is defined
+
+# Diffie-Hellman parameter for DHE ciphersuites, recommended 2048 bits
+- name: copy certificate dh params to server from s3 bucket {{ certificate_bucket }}
+  s3:
+    bucket="{{ certificate_bucket }}"
+    object="{{ item.certificate }}.dhparams"
+    dest="{{ certificates_path }}/{{ item.filename | default(item.domain) }}/server.dhparams"
+    mode=get
+  with_items: "{{ services }}"
+  when: item.certificate is defined and item.domain is defined

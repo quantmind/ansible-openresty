@@ -1,0 +1,12 @@
+###
+#   Install nginx configuration files for services providing the <domain> key
+#
+---
+- name: configuration files
+  include: install_conf.yml
+
+- name: html files
+  include: install_html.yml
+
+- name: SSL certificate files
+  include: install_crt.yml

@@ -1,0 +1,16 @@
+machine:
+
+  python:
+    version: 2.7.10
+
+  services:
+    - docker
+
+dependencies:
+  override:
+    - pip install -U pip ansible
+
+
+test:
+  override:
+    - ansible-playbook tests/docker.yml

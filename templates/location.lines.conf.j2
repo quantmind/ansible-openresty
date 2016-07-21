@@ -1,0 +1,7 @@
+
+
+    location {{ location.location }} {
+{% for line in location.lines %}
+        {{ line }};
+{% endfor %}
+    }

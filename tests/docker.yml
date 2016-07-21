@@ -1,0 +1,12 @@
+- name: Create the docker image for openresty
+
+  hosts: localhost
+
+  vars:
+    openresty_push: false
+    openresty_create_image: true
+    openresty_image_name: openresty_test
+    openresty_volume_path: "{{ ansible_env.HOME }}/tests/openresty"
+
+  roles:
+    - openresty

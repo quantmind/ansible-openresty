@@ -1,0 +1,14 @@
+---
+openresty_volume_nginx_path: "{{ openresty_volume_path }}/nginx"
+openresty_volume_nginx_config_path: "{{ openresty_volume_nginx_path }}/config"
+openresty_volume_nginx_html_path: "{{ openresty_volume_nginx_path }}/html"
+openresty_volume_nginx_ssl_path: "{{ openresty_volume_nginx_path }}/ssl"
+openresty_volume_nginx_log_path: "{{ openresty_volume_nginx_path }}/logs"
+
+
+nginx_base_path: "{{ openresty_base_path }}/nginx"
+luajit_base_path: "{{ openresty_base_path }}/luajit"
+nginx_conf_path: "{{ nginx_base_path }}/conf"
+nginx_html_path: "{{ nginx_base_path }}/html"
+nginx_log_path: "{{ nginx_base_path }}/logs"
+nginx_ssl_path: "{{ nginx_base_path }}/ssl"

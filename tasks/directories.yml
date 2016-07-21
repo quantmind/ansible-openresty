@@ -1,0 +1,30 @@
+###
+#   Make sure directories are available
+#
+---
+- name: Make sure path {{ openresty_volume_nginx_config_path }} is available
+  file:
+    path="{{ openresty_volume_nginx_config_path }}"
+    state=directory
+
+- name: Make sure path {{ openresty_volume_nginx_html_path }} is available
+  file:
+    path="{{ openresty_volume_nginx_html_path }}"
+    state=directory
+
+- name: Make sure path {{ openresty_volume_nginx_ssl_path }} is available
+  file:
+    path="{{ openresty_volume_nginx_ssl_path }}"
+    state=directory
+
+- name: Make sure path {{ openresty_volume_nginx_log_path }} is available
+  file:
+    path="{{ openresty_volume_nginx_log_path }}"
+    state=directory
+
+- name: Make sure certificate directories are available
+  file:
+    path="{{ openresty_volume_nginx_ssl_path }}/{{ item.filename | default(item.domain) }}"
+    state=directory
+  with_items: "{{ services }}"
+  when: item.certificate is defined and item.domain is defined

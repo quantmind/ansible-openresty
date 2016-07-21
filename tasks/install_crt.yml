@@ -1,0 +1,53 @@
+###
+#   Download SSL certificates from S3
+---
+- name: copy certificate to server from s3 bucket {{ certificate_bucket }}
+  s3:
+    bucket="{{ certificate_bucket }}"
+    object="{{ item.certificate }}.crt"
+    dest="{{ openresty_volume_nginx_ssl_path }}/{{ item.filename | default(item.domain) }}/server.crt"
+    mode=get
+  with_items: "{{ services }}"
+  when: item.certificate is defined and item.domain is defined
+
+- name: copy certificate key to server from s3 bucket {{ certificate_bucket }}
+  s3:
+    bucket="{{ certificate_bucket }}"
+    object="{{ item.certificate }}.key"
+    dest="{{ openresty_volume_nginx_ssl_path }}/{{ item.filename | default(item.domain) }}/server.key"
+    mode=get
+  with_items: "{{ services }}"
+  when: item.certificate is defined and item.domain is defined
+
+# Diffie-Hellman parameter for DHE ciphersuites, recommended 2048 bits
+- name: copy certificate dh params to server from s3 bucket {{ certificate_bucket }}
+  s3:
+    bucket="{{ certificate_bucket }}"
+    object="{{ item.certificate }}.dhparams"
+    dest="{{ openresty_volume_nginx_ssl_path }}/{{ item.filename | default(item.domain) }}/server.dhparams"
+    mode=get
+  with_items: "{{ services }}"
+  when: item.certificate is defined and item.domain is defined
+
+- name: Strip keys
+  include: strip_keys.yml
+  when: ssl_passphrase != false
+
+- name: Check certificate md5
+  shell:
+    openssl x509 -noout -modulus -in {{ openresty_volume_nginx_ssl_path }}/{{ item.filename | default(item.domain) }}/server.crt| openssl md5;
+  register: "md5_crt"
+  with_items: "{{ services }}"
+  when: item.certificate is defined and item.domain is defined
+
+- name: Check key md5
+  shell:
+    openssl rsa -noout -modulus -in {{ openresty_volume_nginx_ssl_path }}/{{ item.filename | default(item.domain) }}/server.key| openssl md5;
+  register: "md5_key"
+  with_items: "{{ services }}"
+  when: item.certificate is defined and item.domain is defined
+
+# - debug: msg="{{ item.0.stdout }} - {{ item.1.stdout }}"
+#   with_together:
+#     - "{{ md5_crt.results }}"
+#     - "{{ md5_key.results }}"

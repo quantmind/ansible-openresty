@@ -1,0 +1,28 @@
+---
+- name: Create the Dockerfile in {{ openresty_volume_path }}
+  template:
+    src=Dockerfile.j2
+    dest="{{ openresty_volume_path }}/Dockerfile"
+
+- name: copy nginx.conf template to {{ openresty_volume_path }}/nginx.conf
+  template:
+    src=nginx.conf.j2
+    dest="{{ openresty_volume_path }}/nginx.conf"
+
+- name: create a new {{ openresty_image_name }}
+  docker_image:
+    path="{{ openresty_volume_path }}"
+    name="{{ openresty_image_name }}"
+    tag="{{ openresty_tag }}"
+    force=true
+    push=false
+  when: openresty_push == false
+
+- name: create a new {{ openresty_image_name }} and push to {{ openresty_repository }}
+  docker_image:
+    path="{{ openresty_volume_path }}"
+    name="{{ openresty_repository }}/{{ openresty_image_name }}"
+    tag="{{ openresty_tag }}"
+    force=true
+    push=true
+  when: openresty_push != false

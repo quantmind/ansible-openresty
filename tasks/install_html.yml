@@ -1,0 +1,9 @@
+###
+#   Install nginx html files from the {{ nginx_html_templates }} list
+#
+---
+- name: copy additional html files into {{ openresty_volume_nginx_html_path }}
+  template:
+    src="{{ item }}"
+    dest="{{ openresty_volume_nginx_html_path }}/{{ item }}"
+  with_items: "{{ nginx_html_templates }}"
