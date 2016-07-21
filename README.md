@@ -4,7 +4,8 @@
 
 [![CircleCI](https://circleci.com/gh/quantmind/ansible-openresty.svg?style=svg)](https://circleci.com/gh/quantmind/ansible-openresty)
 
-**Ansible galaxy**: [quantmind.openresty](https://galaxy.ansible.com/quantmind/openresty/)
+[![galaxy](https://img.shields.io/badge/galaxy-quantmind.openresty-blue.svg)](https://galaxy.ansible.com/quantmind/openresty/)
+
 
 Ansible role to create an openresty docker image and add configuration files.
 

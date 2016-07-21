@@ -7,6 +7,7 @@ language: generic
 
 before_install:
   - sudo apt-get -qq update
+  - sudo apt-get -qq upgrade
   - sudo apt-get install -y python python-pip python-dev
 
 
@@ -24,6 +25,8 @@ script:
   - docker login -p $DOCKER_PASS -e $DOCKER_EMAIL -u $DOCKER_USER
   # Run the role/playbook with ansible-playbook
   - ansible-playbook tests/docker.yml -i tests/inventory --connection=local --become
+  # Check docker
+  - docker version
   # Run the role/playbook again, checking to make sure it's idempotent
   - ansible-playbook tests/docker.yml -i tests/inventory --connection=local --become
   # | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
