@@ -3,6 +3,7 @@
   hosts: localhost
 
   vars:
+    docker_users: ["ubuntu"]
     openresty_push: false
     openresty_create_image: true
     openresty_image_name: openresty_test
