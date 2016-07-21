@@ -1,10 +1,17 @@
 ---
-language: python
-python: 2.7.10
+sudo: required
+dist: trusty
+
+language: generic
+
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y python python-pip
 
 
 install:
-  - pip install -U -r tests/requirements.txt
+  - sudo pip install -U -r tests/requirements.txt
   - ansible --version
   - printf '[defaults]\nroles_path=./galaxy-roles:../' >ansible.cfg
   - ansible-galaxy install dochang.docker
@@ -14,9 +21,9 @@ script:
   # Basic role syntax check
   - ansible-playbook tests/docker.yml -i tests/inventory --syntax-check
   # Run the role/playbook with ansible-playbook
-  - ansible-playbook tests/docker.yml -i tests/inventory --connection=local
+  - ansible-playbook tests/docker.yml -i tests/inventory --connection=local --become
   # Run the role/playbook again, checking to make sure it's idempotent
-  - ansible-playbook tests/docker.yml -i tests/inventory --connection=local
+  - ansible-playbook tests/docker.yml -i tests/inventory --connection=local --become
   # | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
 
 
