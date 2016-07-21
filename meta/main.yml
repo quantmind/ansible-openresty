@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: "Luca Sbardella"
+  company: Quantmind
+  license: BSD
+  min_ansible_version: 2.0
+  platforms:
+   - name: Ubuntu
+     versions:
+      - trusty
+      - xenial
+  categories:
+   - web
+dependencies: []
