@@ -16,3 +16,8 @@ dependencies:
 test:
   override:
     - ansible-playbook tests/docker.yml
+
+
+notify:
+  webhooks:
+    - url: https://galaxy.ansible.com/api/v1/notifications/
