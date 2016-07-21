@@ -11,4 +11,4 @@ galaxy_info:
       - xenial
   categories:
    - web
-dependencies: []
+dependencies: ["dochang.docker"]

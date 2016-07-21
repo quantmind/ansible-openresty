@@ -3,14 +3,12 @@ machine:
   python:
     version: 2.7.10
 
-  services:
-    - docker
-
 dependencies:
   override:
     - pip install -U -r tests/requirements.txt
     - ansible --version
-    - printf '[defaults]\nroles_path=../' >ansible.cfg
+    - printf '[defaults]\nroles_path=./galaxy-roles:../' >ansible.cfg
+    - ansible-galaxy install dochang.docker
 
 test:
   override:

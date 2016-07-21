@@ -9,4 +9,5 @@
     openresty_volume_path: "{{ ansible_env.HOME }}/tests/openresty"
 
   roles:
+    - dochang.docker
     - ansible-openresty
