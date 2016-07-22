@@ -112,5 +112,6 @@ RUN mkdir -p {{ nginx_conf_path }}/conf.d \
     && mkdir -p {{ nginx_html_path }}
 
 {% if openresty_user %}
+RUN groupadd -r {{ openresty_user }} && useradd -r -g {{ openresty_user }} {{ openresty_user }}
 USER {{ openresty_user }}
 {% endif %}
