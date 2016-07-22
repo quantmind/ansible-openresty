@@ -5,9 +5,11 @@ dist: trusty
 language: generic
 
 
+services:
+  - docker
+
+
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get -qq upgrade
   - sudo apt-get install -y python python-pip python-dev
 
 
@@ -15,7 +17,6 @@ install:
   - sudo pip install -U -r tests/requirements.txt
   - ansible --version
   - printf '[defaults]\nroles_path=./galaxy-roles:../' >ansible.cfg
-  - ansible-galaxy install dochang.docker
 
 
 script:
