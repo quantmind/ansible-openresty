@@ -22,6 +22,23 @@ An example playbook:
 
 ```
 
+When an image is createdm the ``nginx.conf`` file is also populated and the following
+variable are used.
+
+**nginx_maps**
+
+A list of objects with chema:
+```json
+{
+    "from": "<mapping from>",
+    "to": "<mapping to>",
+    "entries": [
+        "<line 1>",
+        ...
+    ]
+}
+```
+
 ## Install sites
 
 When ``openresty_create_image`` is set to ``false`` (the default value), the role installs
