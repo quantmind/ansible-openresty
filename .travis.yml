@@ -14,7 +14,7 @@ before_install:
 
 
 install:
-  - sudo pip install git+https://github.com/ansible/ansible.git@devel#egg=ansible
+  - sudo pip install git+https://github.com/ansible/ansible.git@devel#egg=ansible docker-py
 
 
 script:
@@ -25,7 +25,7 @@ script:
   # login into Docker Hub
   - docker login -p $DOCKER_PASS -e $DOCKER_EMAIL -u $DOCKER_USER
   # Run the role/playbook with ansible-playbook
-  - cd deployment; ansible-playbook docker.yml -i inventory --connection=local --become
+  - cd deployment; ansible-playbook docker.yml -i inventory --connection=local
 
 
 notifications:
