@@ -12,3 +12,12 @@ nginx_conf_path: "{{ nginx_base_path }}/conf"
 nginx_html_path: "{{ nginx_base_path }}/html"
 nginx_log_path: "{{ nginx_base_path }}/logs"
 nginx_ssl_path: "{{ nginx_base_path }}/ssl"
+
+
+openresty_os_tags: {
+  xenial: ubuntu,
+  trusty: ubuntu,
+  jessie: debian
+}
+openresty_tag: "{{ openresty_distribution }}"
+openresty_distro: "{{ openresty_os_tags[openresty_distribution] }}:{{ openresty_distribution }}"

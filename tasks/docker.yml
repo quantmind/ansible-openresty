@@ -18,7 +18,7 @@
     push=false
   when: openresty_push == false
 
-- name: create a new {{ openresty_image_name }} and push to {{ openresty_repository }}
+- name: create a new {{ openresty_image_name }}:{{ openresty_tag }} and push to {{ openresty_repository }}
   docker_image:
     path="{{ openresty_volume_path }}"
     name="{{ openresty_repository }}/{{ openresty_image_name }}"

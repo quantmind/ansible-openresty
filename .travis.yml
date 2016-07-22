@@ -15,22 +15,17 @@ before_install:
 
 install:
   - sudo pip install -U -r tests/requirements.txt
-  - ansible --version
-  - printf '[defaults]\nroles_path=./galaxy-roles:../' >ansible.cfg
 
 
 script:
+  - ansible --version
+  - docker version
   # Basic role syntax check
-  - ansible-playbook tests/docker.yml -i tests/inventory --syntax-check
+  - cd deployment; ansible-playbook docker.yml -i inventory --syntax-check
   # login into Docker Hub
   - docker login -p $DOCKER_PASS -e $DOCKER_EMAIL -u $DOCKER_USER
   # Run the role/playbook with ansible-playbook
-  - ansible-playbook tests/docker.yml -i tests/inventory --connection=local --become
-  # Check docker
-  - docker version
-  # Run the role/playbook again, checking to make sure it's idempotent
-  - ansible-playbook tests/docker.yml -i tests/inventory --connection=local --become
-  # | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+  - cd deployment; ansible-playbook docker.yml -i inventory --connection=local --become
 
 
 notifications:
