@@ -8,6 +8,7 @@ openresty_distribution: xenial
 openresty_image_name: test  # change this
 openresty_repository: test  # change this
 openresty_mantainer: No one # change this
+openresty_user: openresty
 openresty_tag: latest
 openresty_push: true
 #
@@ -27,3 +28,6 @@ ssl_passphrase: false
 services: []
 nginx_config_templates: []
 nginx_html_templates: []
+
+#
+openresty_user: nginx

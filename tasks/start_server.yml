@@ -1,0 +1,16 @@
+---
+- name: Run {{ openresty_repository }}/{{ openresty_image_name }}:{{ openresty_tag }} container
+  docker_container:
+    name: openresty_nginx
+    image: "{{ openresty_repository }}/{{ openresty_image_name }}:{{ openresty_tag }}"
+    expose:
+      - 80
+      - 443
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - "{{ openresty_volume_nginx_config_path }}:{{ nginx_conf_path }}/conf.d"
+      - "{{ openresty_volume_nginx_html_path }}:{{ nginx_html_path }}"
+      - "{{ openresty_volume_nginx_ssl_path }}:{{ nginx_ssl_path }}"
+      - "{{ openresty_volume_nginx_log_path }}:{{ nginx_log_path }}"

@@ -52,11 +52,27 @@ When ``openresty_create_image`` is set to ``false`` (the default value), the rol
 
 ### Configuration files
 
-These are defined in the ``services`` list. The list containes objects with
+These are defined in the ``services`` list. The list contains objects with
 schema::
 ```json
 {
+    "domain": "value of server_name in server directive",
+    "certificate": "S3 key of SSL certificate"
+    "locations": [
+        {
+            "s3location": "Optional s3location",
+            "host": "Optional host, used in proxy_pass directive",
+            "port": "Optional port, required when host is used"
+        },
+        ...
+    ]
 }
 ```
+
+* if ``domain`` is specified, a service entry creates a new configuration file
+for nginx, otherwise it is ignored by this role.
+* ``certificate`` when available the ``server`` is configured to listen on port 443 ofer a TLS connectin. The certificate is downloaded from the ``certificate_bucket``.
+* ``locations``   
+
 
 [openresty]: https://openresty.org/en/

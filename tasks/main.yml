@@ -5,3 +5,6 @@
 
 - include: configure.yml
   when: openresty_create_image != true
+
+- include: start_server.yml
+  when: openresty_create_image != true
