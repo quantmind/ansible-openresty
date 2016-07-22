@@ -11,7 +11,7 @@ services:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y python python-pip python-dev docker-engine
+  - sudo apt-get install -yy python python-pip python-dev docker-engine
 
 
 install:
