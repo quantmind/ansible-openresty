@@ -3,7 +3,9 @@
 [![galaxy](https://img.shields.io/badge/galaxy-quantmind.openresty-blue.svg)](https://galaxy.ansible.com/quantmind/openresty/)
 [![Build Status](https://travis-ci.org/quantmind/ansible-openresty.svg?branch=master)](https://travis-ci.org/quantmind/ansible-openresty)
 
-Ansible role to create an openresty docker images and add configuration files.
+**Docker repository**: [quantmind/openresty](https://hub.docker.com/r/quantmind/openresty/)
+
+Ansible role to create [openresty][] docker images and add configuration files.
 
 ## Create Image
 
@@ -27,7 +29,8 @@ variable are used.
 
 **nginx_maps**
 
-A list of objects with chema:
+Add [nginx map](http://nginx.org/en/docs/http/ngx_http_map_module.html) directives to the configuration.
+A list of objects with schema:
 ```json
 {
     "from": "<mapping from>",
@@ -56,3 +59,4 @@ schema::
 }
 ```
 
+[openresty]: https://openresty.org/en/

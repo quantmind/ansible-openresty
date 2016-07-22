@@ -1,0 +1,14 @@
+- name: Create the docker image for openresty
+
+  hosts: localhost
+
+  vars:
+    openresty_mantainer: Luca Sbardella <luca@quantmind.com>
+    openresty_repository: quantmind
+    openresty_image_name: openresty
+    openresty_create_image: true
+    openresty_volume_path: "{{ ansible_env.HOME }}/tests/openresty"
+
+  roles:
+    - {role: ansible-openresty, openresty_distribution: xenial}
+    - {role: ansible-openresty, openresty_distribution: jessie}
