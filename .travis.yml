@@ -11,7 +11,7 @@ services:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get --yes --force-yes install python python-pip python-dev docker-engine
+  - sudo apt-get install -o Dpkg::Options::="--force-confold" -y --force-yes python python-pip python-dev docker-engine
 
 
 install:
