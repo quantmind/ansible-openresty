@@ -3,12 +3,15 @@
   docker_container:
     name: openresty_nginx
     image: "{{ openresty_repository }}/{{ openresty_image_name }}:{{ openresty_tag }}"
+    state: started
+    recreate: yes
     expose:
       - 80
       - 443
     ports:
       - 80:80
       - 443:443
+    network_mode: '{{ nginx_network_mode }}'
     volumes:
       - "{{ openresty_volume_nginx_config_path }}:{{ nginx_conf_path }}/conf.d"
       - "{{ openresty_volume_nginx_html_path }}:{{ nginx_html_path }}"

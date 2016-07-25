@@ -1,7 +1,0 @@
-{% for map in nginx_maps %}
-    map {{ map.from }} {{ map.to }} {
-    {% for entry in map.entries %}
-        {{ entry[0] }}        {{ entry[1] }};
-    {% endfor %}
-    }
-{% endfor %}

@@ -107,6 +107,7 @@ ENTRYPOINT ["/usr/local/openresty/nginx/sbin/nginx", "-g", "daemon off;"]
 
 ADD nginx.conf {{ nginx_conf_path }}
 RUN mkdir -p {{ nginx_conf_path }}/conf.d \
+    && mkdir -p {{ nginx_conf_path }}/event.d \
     && mkdir -p {{ nginx_ssl_path }} \
     && mkdir -p {{ nginx_log_path }} \
     && mkdir -p {{ nginx_html_path }}

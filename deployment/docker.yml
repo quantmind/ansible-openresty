@@ -4,8 +4,6 @@
 
   vars:
     openresty_mantainer: Luca Sbardella <luca@quantmind.com>
-    openresty_repository: quantmind
-    openresty_image_name: openresty
     openresty_create_image: true
     openresty_volume_path: "{{ ansible_env.HOME }}/tests/openresty"
 

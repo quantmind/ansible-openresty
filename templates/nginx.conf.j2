@@ -3,7 +3,7 @@ worker_processes auto;
 
 events {
     worker_connections 768;
-    # multi_accept on;
+    include {{ nginx_conf_path }}/event.d/*.conf;
 }
 
 http {
@@ -57,8 +57,6 @@ http {
         ''      close;
     }
 {% endif %}
-
-{% include "maps.conf.j2" with context %}
 
     ##
     # Virtual Host Configs
