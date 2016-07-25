@@ -14,7 +14,8 @@ server {
 {% for line in item.lines %}
     {{ line }};
 {% endfor %}
-{% else %}
+{% endif %}
+
     # resolver configuration in case it is needed
     resolver            {{ nginx_resolver }} valid=300s;
     resolver_timeout    5s;
@@ -30,7 +31,6 @@ server {
     send_timeout 300s;
 
     proxy_http_version 1.1;
-{% endif %}
 
 {% if item.locations | default(False) %}
 {% for location in item.locations %}
