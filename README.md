@@ -43,16 +43,24 @@ schema:
 {
     "domain": "value of server_name in server directive",
     "certificate": "S3 key of SSL certificate",
-    "locations": [location1, ...],
-    "redirects": [redirect1, ...]
+    "lines": []
+    "locations": [],
+    "redirects": []
 }
 ```
 
-* if ``domain`` is specified, the service entry creates a new configuration file
-for nginx, otherwise it is ignored by this role.
-* When ``certificate`` is available the ``server`` is configured to listen on port 443 over a TLS connection.
-The certificate is downloaded from the ``certificate_bucket`` and key given by ``certificate``.
-
+* If ``domain`` is specified, the service entry creates a new configuration file
+  for an nginx [server block](http://nginx.org/en/docs/http/ngx_http_core_module.html#server),
+  otherwise it is ignored by this role.
+* When ``certificate`` is available the server block is configured to listen on port 443 over a TLS connection.
+  The certificate is downloaded from the ``certificate_bucket`` and key given by ``certificate``.
+* ``lines`` is an optional list of lines to add to the server block.
+  Semicolon should be excluded form the line. For example::
+  ```
+        ["error_page 500 502 503 504 /custom_50x.html"]
+  ```
+  adds a configuration line for a custom template.
+   
 ### location
 
 The ``location`` object inside a ``service`` object has the following schema:

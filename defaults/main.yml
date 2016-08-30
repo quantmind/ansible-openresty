@@ -1,5 +1,5 @@
 ---
-# Location when dockerfile is located as well as all config/logs/ssl/html directories
+# Location where config/logs/ssl/html directories are located
 openresty_volume_path: "{{ ansible_env.HOME }}/openresty"
 #
 # When openresty_create_image is true (default false), the role create an openresty image
