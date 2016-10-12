@@ -5,7 +5,8 @@
 
 **Docker repository**: [quantmind/openresty](https://hub.docker.com/r/quantmind/openresty/)
 
-Ansible role to create [openresty][] docker images and add configuration files.
+Ansible role to create [openresty][] docker images and install openresty
+and configuration files on target machines.
 
 ## Create Image
 
@@ -27,13 +28,21 @@ An example playbook:
 When an image is created the ``nginx.conf`` file is also populated.
 
 
+## Variables Only
+
+To prevent installation, set ``openresty_install=false``. In this configuration
+the role can be used only for the variables it specifies.
+
 ## Install sites
 
-When ``openresty_create_image`` is set to ``false`` (the default value), the role installs
+When ``openresty_create_image`` is set to ``false`` (the default value) and
+``openresty_install`` is set to ``true`` (the default value)
+the role installs
 
 * Nginx configuration files for web sites in ``openresty_volume_nginx_config_path``
 * SSL server certificates in ``openresty_volume_nginx_ssl_path``
 * Html/static assets in ``openresty_volume_nginx_html_path``
+
 
 ### Configuration files
 

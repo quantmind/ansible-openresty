@@ -4,7 +4,7 @@
   when: openresty_create_image == true
 
 - include: configure.yml
-  when: openresty_create_image != true
+  when: openresty_create_image != true and openresty_install == true
 
 - include: start_server.yml
-  when: openresty_create_image != true
+  when: openresty_create_image != true and openresty_install == true
