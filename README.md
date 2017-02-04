@@ -8,6 +8,21 @@
 Ansible role to create [openresty][] docker images and install openresty
 and configuration files on target machines.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Create Image](#create-image)
+- [Variables Only](#variables-only)
+- [Install sites](#install-sites)
+  - [Configuration files](#configuration-files)
+  - [location](#location)
+  - [redirect](#redirect)
+- [Openresty Docker](#openresty-docker)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 ## Create Image
 
 To create an image the ``openresty_create_image`` must be set to ``true`` (default is ``false``).
@@ -97,5 +112,12 @@ redirect directive inside the server.
     "filename": "Optional filename for the SSL certificate, if not provided, the from value is used"
 }
 ```
+
+## Openresty Docker
+
+Openresty provides an official [docker image](https://hub.docker.com/r/openresty/openresty/)
+from which the ansible [Dockerfile.j2](https://github.com/quantmind/ansible-openresty/blob/master/templates/Dockerfile.j2)
+template is produced.
+
 
 [openresty]: https://openresty.org/en/
